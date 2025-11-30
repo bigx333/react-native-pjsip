@@ -229,7 +229,11 @@ public class PjSipService extends Service {
             mGSMIdle = mTelephonyManager.getCallState() == TelephonyManager.CALL_STATE_IDLE;
 
             IntentFilter phoneStateFilter = new IntentFilter(TelephonyManager.ACTION_PHONE_STATE_CHANGED);
-            registerReceiver(mPhoneStateChangedReceiver, phoneStateFilter);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                registerReceiver(mPhoneStateChangedReceiver, phoneStateFilter, Context.RECEIVER_EXPORTED);
+            } else {
+                registerReceiver(mPhoneStateChangedReceiver, phoneStateFilter);
+            }
 
             mInitialized = true;
 
@@ -266,8 +270,6 @@ public class PjSipService extends Service {
         } catch (Exception e) {
             Log.w(TAG, "Failed to destroy PjSip library", e);
         }
-
-        unregisterReceiver(mPhoneStateChangedReceiver);
 
         super.onDestroy();
     }
