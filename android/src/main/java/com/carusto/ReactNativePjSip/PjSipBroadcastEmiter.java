@@ -39,6 +39,7 @@ public class PjSipBroadcastEmiter {
             intent.setAction(PjActions.EVENT_STARTED);
             intent.putExtra("callback_id", original.getIntExtra("callback_id", -1));
             intent.putExtra("data", data.toString());
+            intent.setPackage(context.getPackageName());
 
             context.sendBroadcast(intent);
         } catch (Exception e) {
@@ -51,6 +52,7 @@ public class PjSipBroadcastEmiter {
         intent.setAction(PjActions.EVENT_HANDLED);
         intent.putExtra("callback_id", original.getIntExtra("callback_id", -1));
         intent.putExtra("data", result.toString());
+        intent.setPackage(context.getPackageName());
 
         context.sendBroadcast(intent);
     }
@@ -59,6 +61,7 @@ public class PjSipBroadcastEmiter {
         Intent intent = new Intent();
         intent.setAction(PjActions.EVENT_HANDLED);
         intent.putExtra("callback_id", original.getIntExtra("callback_id", -1));
+        intent.setPackage(context.getPackageName());
 
         context.sendBroadcast(intent);
     }
@@ -68,6 +71,7 @@ public class PjSipBroadcastEmiter {
         intent.setAction(PjActions.EVENT_HANDLED);
         intent.putExtra("callback_id", original.getIntExtra("callback_id", -1));
         intent.putExtra("exception", e.getMessage());
+        intent.setPackage(context.getPackageName());
 
         context.sendBroadcast(intent);
     }
@@ -77,6 +81,7 @@ public class PjSipBroadcastEmiter {
         intent.setAction(PjActions.EVENT_ACCOUNT_CREATED);
         intent.putExtra("callback_id", original.getIntExtra("callback_id", -1));
         intent.putExtra("data", account.toJsonString());
+        intent.setPackage(context.getPackageName());
 
         context.sendBroadcast(intent);
     }
@@ -85,6 +90,7 @@ public class PjSipBroadcastEmiter {
         Intent intent = new Intent();
         intent.setAction(PjActions.EVENT_REGISTRATION_CHANGED);
         intent.putExtra("data", account.toJsonString());
+        intent.setPackage(context.getPackageName());
 
         context.sendBroadcast(intent);
     }
@@ -93,6 +99,7 @@ public class PjSipBroadcastEmiter {
         Intent intent = new Intent();
         intent.setAction(PjActions.EVENT_MESSAGE_RECEIVED);
         intent.putExtra("data", message.toJsonString());
+        intent.setPackage(context.getPackageName());
 
         context.sendBroadcast(intent);
     }
@@ -101,6 +108,7 @@ public class PjSipBroadcastEmiter {
         Intent intent = new Intent();
         intent.setAction(PjActions.EVENT_CALL_RECEIVED);
         intent.putExtra("data", call.toJsonString());
+        intent.setPackage(context.getPackageName());
 
         context.sendBroadcast(intent);
     }
@@ -109,6 +117,7 @@ public class PjSipBroadcastEmiter {
         Intent intent = new Intent();
         intent.setAction(PjActions.EVENT_CALL_CHANGED);
         intent.putExtra("data", call.toJsonString());
+        intent.setPackage(context.getPackageName());
 
         context.sendBroadcast(intent);
     }
@@ -117,6 +126,7 @@ public class PjSipBroadcastEmiter {
         Intent intent = new Intent();
         intent.setAction(PjActions.EVENT_CALL_TERMINATED);
         intent.putExtra("data", call.toJsonString());
+        intent.setPackage(context.getPackageName());
 
         context.sendBroadcast(intent);
     }
